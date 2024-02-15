@@ -1,0 +1,101 @@
+html,body {
+    overflow-x: hidden;
+    font-family: Sans-Serif;
+    font-weight: 100;
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 5px;
+    padding-left: 20px;
+    background: #00f3;
+    background: linear-gradient(90deg, #00f3 0%, #f003 100%);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    border: 1px solid #0004;
+    box-shadow: 0 0 5px #000;
+    z-index: 999;
+}
+header a {
+    text-decoration: none;
+}
+main {
+    margin-top: 150px;
+    margin-bottom: 100px;
+    text-align: center;
+    background-color: #fff;
+}
+#contents {
+    margin: 10px;
+    border: 1px solid #fff4;
+    box-shadow: 3px 3px 8px #0008;
+    padding: 10px;
+    border-radius: 3px;
+    text-align: left;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5px;
+    background-color: #0001;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+hr {
+    border: .5px solid #000;
+}
+a {
+    color: #000;
+}
+a:active {
+    color: #555;
+    text-shadow: 0 0 5px #0005;
+}
+#copyurl {
+    padding: 3px;
+    border: 1px solid #000;
+    color: #fff;
+    background-color: #111;
+    border-radius: 2px;
+    font-size: 15px;
+    scale: 1;
+}
+#copyurl:active {
+    animation: 1s zoomIn;
+}
+.pagination {
+    font-size: 20px;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-weight: 100;
+}
+h2 {
+    border-left: 4px solid #111;
+    padding: 5px;
+}
+.oW {
+    background-color: #0000;
+    margin: 20px;
+    text-align: left;
+    border: 1px solid #f66;
+    border-left: 10px solid #f66;
+    padding: 5px;
+    box-shadow: 2px 2px 5px #0008;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+@keyframes zoomIn {
+    from {
+        scale: 1;
+        background-color: #111;
+    }
+    to {
+        scale: 1.5;
+        background-color: #555;
+    }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+        <title>blog.gggg.f5.si</title>
+    </head>
+    <body>
+        <header>
+            <a href="./index.html"><h1>:\\KietBlog</h1></a>
+        </header>
+        <main>
+            <p class="oW">最近の趣味はScratch,HTML,CSS,JavaScriptです。</p>
+            <div class="articles">
+                <a href="https://blog.gggg.f5.si/?page=2"><h2>最近の記事</h2></a>
+             </div>
+            <div class="pagination">
+                <a href="#" id="prev-link">Previous</a>
+                <span id="page-number">1</span>
+                <a href="#" id="next-link">Next</a>
+            </div>
+            <div id="contents">
+                <noscript><h2>You need enable javascript!</h2></noscript>
+            </div>
+            <br>
+            <button id="copyurl" onclick="copyLink()">Copy URL</button>
+            <br>
+            <hr>
+            <br>
+            <div><br></div><a href="https://github.com/gabillan">GitHub</a>
+            <div><br></div><a href="https://gggg.f5.si/">About me</a>
+            <div><br></div><a href="https://github.com/Gabillan/blog-gggg">Source</a>
+        </main><br>
+        <footer>
+            <hr>
+            <p>&copy; Kiet 2024</p>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const urlParams = new URLSearchParams(window.location.search);
+                let currentPage = parseInt(urlParams.get('page')) || 1;
+                function fetchAndDisplay(page) {
+                    fetch(`${page}.md`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('File not found');
+                            }
+                            return response.text();
+                        })
+                        .then(markdown => {
+                            const converter = new showdown.Converter();
+                            const html = converter.makeHtml(markdown);
+                            document.getElementById('contents').innerHTML = html;
+                            document.getElementById('page-number').textContent = page;
+                            history.pushState({}, null, `?page=${page}`);
+                        })
+                        .catch(error => {
+                            fetch('notfound.md')
+                                .then(response => response.text())
+                                .then(markdown => {
+                                    const converter = new showdown.Converter();
+                                    const html = converter.makeHtml(markdown);
+                                    document.getElementById('contents').innerHTML = html;
+                                    document.getElementById('page-number').textContent = 'Not Found';
+                                });
+                        });
+                }
+                document.getElementById('next-link').addEventListener('click', function (event) {
+                    event.preventDefault();
+                    currentPage++;
+                    fetchAndDisplay(currentPage);
+                });
+                document.getElementById('prev-link').addEventListener('click', function (event) {
+                    event.preventDefault();
+                    if (currentPage > 1) {
+                        currentPage--;
+                        fetchAndDisplay(currentPage);
+                    }
+                });
+                fetchAndDisplay(currentPage);
+            });
+        </script>
+        <script>
+            function copyLink(){var tempTextArea=document.createElement('textarea');tempTextArea.value=window.location.href;tempTextArea.style.position='fixed';tempTextArea.style.opacity=0;document.body.appendChild(tempTextArea);tempTextArea.select();document.execCommand('copy');document.body.removeChild(tempTextArea);}
+        </script>
+    </body>
+</html>
