@@ -2,4 +2,4 @@
 
 [トップページ](https://gggg.f5.si/)
 
-[ページを再読み込み](blog.html)
+[ページを再読み込み](./index.html)
